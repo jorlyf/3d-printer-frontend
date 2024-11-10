@@ -25,11 +25,13 @@ async function _send(_login, _password) {
   }
 }
 
-function register() {
+function register(e) {
+  e.preventDefault();
+
   const login = document.getElementById("inp_1").value;
   const password = document.getElementById("inp_2").value;
   _send(login, password);
 }
 
-const registerButton = document.getElementById("registerButton");
-registerButton?.addEventListener("click", register);
+const registerForm = document.getElementById("registerForm");
+registerForm?.addEventListener("submit", register);

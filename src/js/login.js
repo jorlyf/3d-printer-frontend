@@ -25,11 +25,13 @@ async function _send(_login, _password) {
   }
 }
 
-function login() {
+function login(e) {
+  e.preventDefault();
+
   const login = document.getElementById("inp_1").value;
   const password = document.getElementById("inp_2").value;
   _send(login, password);
 }
 
-const loginButton = document.getElementById("loginButton");
-loginButton?.addEventListener("click", login);
+const loginForm = document.getElementById("loginForm");
+loginForm?.addEventListener("submit", login);
