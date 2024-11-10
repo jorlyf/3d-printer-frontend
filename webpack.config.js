@@ -1,7 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const htmlPages = require("./src/pages.js");
 
 module.exports = {
   mode: "development",
@@ -11,14 +12,10 @@ module.exports = {
     filename: "bundle.js",
   },
   plugins: [
-    new HTMLWebpackPlugin({
-      template: "./src/html/index.html",
-      filename: "index.html",
-    }),
-    new HTMLWebpackPlugin({
-      template: "./src/html/login.html",
-      filename: "login.html",
-    }),
+    ...htmlPages.map((htmlPage) => new HtmlWebpackPlugin({
+      template: `./src/html/${htmlPage.name}.html`,
+      filename: `${htmlPage.name}.html`,
+    })),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin(
       {
@@ -51,7 +48,13 @@ module.exports = {
     ],
   },
   devServer: {
-    port: process.env.DEV_PORT,
+    port: 3000,
     historyApiFallback: true,
+    proxy: [
+      {
+        context: ["/api"],
+        target: "http://localhost:8000",
+      },
+    ],
   },
 }

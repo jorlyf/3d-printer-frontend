@@ -7,7 +7,7 @@ async function _send(_login, _password) {
     password: _password
   }
 
-  const response = await request("api/auth/login", {
+  const response = await request("api/auth/register", {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
@@ -16,7 +16,7 @@ async function _send(_login, _password) {
     },
   });
 
-  if (response.status === 200) {
+  if (response.status === 201) {
     const jwt = await response.json();
     saveJWT(jwt);
   } else {
@@ -24,11 +24,11 @@ async function _send(_login, _password) {
   }
 }
 
-function login() {
+function register() {
   const login = document.getElementById("inp_1").value;
   const password = document.getElementById("inp_2").value;
   _send(login, password);
 }
 
-const loginButton = document.getElementById("loginButton");
-loginButton?.addEventListener("click", login);
+const registerButton = document.getElementById("registerButton");
+registerButton?.addEventListener("click", register);

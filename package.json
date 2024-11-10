@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "cross-env MODE=development DEV_PORT=3000 webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
