@@ -17,7 +17,8 @@ async function _send(_login, _password) {
   });
 
   if (response.status === 201) {
-    const jwt = await response.json();
+    const { data } = await response.json();
+    const jwt = data.token;
     saveJWT(jwt);
   } else {
     alert("Ошибка HTTP: " + response.status);
