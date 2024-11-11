@@ -8,7 +8,7 @@ async function _send(_login, _password) {
     password: _password
   }
 
-  const response = await request("api/auth/register", {
+  const response = await request("auth/register", {
     method: "POST",
     body: JSON.stringify(body),
     headers: {

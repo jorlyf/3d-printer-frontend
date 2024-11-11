@@ -1,6 +1,6 @@
 import { getJWT } from "./jwt";
 
-const API_PATH_PREFIX = "http://localhost:8000";
+const API_PATH_PREFIX = process.env.API_PATH_PREFIX;
 
 const request = (url, options) => {
   const jwt = getJWT();

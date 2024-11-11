@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const dotenv = require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -28,8 +29,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin(
       {
+        "process.env": JSON.stringify(dotenv.parsed),
         "process.env.MODE": JSON.stringify(process.env.MODE),
-      },
+      }
     ),
     new MiniCssExtractPlugin(),
   ],
@@ -55,11 +57,11 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 3000,
+    port: process.env.DEV_PORT,
     historyApiFallback: true,
     proxy: [
       {
-        context: ["/api"],
+        context: [dotenv.parsed.API_PATH_PREFIX],
         target: "http://localhost:8000",
       },
     ],
