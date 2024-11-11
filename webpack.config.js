@@ -2,19 +2,28 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const htmlPages = require("./src/pages.js");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const pages = require("./src/pages.js");
+
+let entry = {}
+for (const page of pages) {
+  entry = {
+    ...entry,
+    [page.name]: [path.resolve(__dirname, "src", "pages", page.jsPath)],
+  }
+}
 
 module.exports = {
   mode: "development",
-  entry: ["./src/index.js"],
+  entry,
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
   },
   plugins: [
-    ...htmlPages.map((htmlPage) => new HtmlWebpackPlugin({
-      template: `./src/html/${htmlPage.name}.html`,
-      filename: `${htmlPage.name}.html`,
+    ...pages.map((page) => new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src", "pages", page.htmlPath),
+      filename: `${page.name}.html`,
+      chunks: [page.name],
     })),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin(
@@ -22,24 +31,22 @@ module.exports = {
         "process.env.MODE": JSON.stringify(process.env.MODE),
       },
     ),
+    new MiniCssExtractPlugin(),
   ],
   resolve: {
     extensions: [".js"],
     alias: {
-      "@public": path.resolve(__dirname, "public"),
-    }
+      "@common": path.resolve(__dirname, "src", "common"),
+    },
   },
   module: {
     rules: [{
       test: /\.js$/,
-      include: path.resolve(__dirname, "./src/js"),
-      use: {
-        loader: "babel-loader",
-      },
+      use: ["babel-loader"],
     },
     {
-      test: /\.(css|scss|module.scss)$/,
-      use: ["style-loader", "css-loader"],
+      test: /\.css$/,
+      use: [MiniCssExtractPlugin.loader, "css-loader"],
     },
     {
       test: /\.(jpg|jpeg|png|svg)$/,

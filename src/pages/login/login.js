@@ -1,5 +1,6 @@
-import request from "./request.js";
-import { saveJWT } from "./jwt.js";
+import request from "./../../common/js/request.js";
+import { saveJWT } from "./../../common/js/jwt.js";
+import "@common/css/style.css";
 
 async function _send(_login, _password) {
   const body = {
@@ -7,7 +8,7 @@ async function _send(_login, _password) {
     password: _password
   }
 
-  const response = await request("api/auth/register", {
+  const response = await request("api/auth/login", {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
@@ -16,7 +17,7 @@ async function _send(_login, _password) {
     },
   });
 
-  if (response.status === 201) {
+  if (response.status === 200) {
     const { data } = await response.json();
     const jwt = data.token;
     saveJWT(jwt);
@@ -25,7 +26,7 @@ async function _send(_login, _password) {
   }
 }
 
-function register(e) {
+function login(e) {
   e.preventDefault();
 
   const login = document.getElementById("inp_1").value;
@@ -33,5 +34,5 @@ function register(e) {
   _send(login, password);
 }
 
-const registerForm = document.getElementById("registerForm");
-registerForm?.addEventListener("submit", register);
+const loginForm = document.getElementById("loginForm");
+loginForm?.addEventListener("submit", login);
