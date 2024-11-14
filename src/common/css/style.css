@@ -1,30 +1,134 @@
+/*#region body*/
+body {
+  --font-size: 16px;
+  --scrollbar-width: 8px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #F2F4F8;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  font-size: var(--font-size);
+}
+
+body::-webkit-scrollbar {
+  width: var(--scrollbar-width);               /* ширина scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0); /* цвет дорожки */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(211, 211, 211);    /* цвет плашки */
+  border-radius: calc(var(--scrollbar-width) / 2);       /* закругления плашки */
+  border: 3px solid rgba(0,0,0,0);  /* padding вокруг плашки */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(71, 93, 119);    /* цвет плашки */
+}
+/*#endregion*/
+
 header {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   width: 100vw;
-  height: 5vh;
+  height: 40px;
   position: sticky;
   top: 0px;
-  padding: 20px;
-  margin: -10px -10px 10px;
-  
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 32px;
+  margin: -12px -10px 10px;
+
+  border-bottom: 4px solid #001D6C;
 }
 
-.a {
+/*#region button/a*/
+.a,
+.sendBtn {
+  --width-padding: 10px;
+  --height: calc(var(--font-size) + var(--width-padding));
+
   color: black;
   text-decoration: none;
+  border-radius: calc(var(--height) / 2) / 50% ;
+
+  padding: 3px var(--width-padding);
+  margin: 20px;
 }
 
-.a:hover {
-  text-decoration: underline;
+.sendBtn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
 }
+
+.a:hover,
+.sendBtn:hover {
+  background-color: lightgray;
+}
+/*#endregion*/
 
 main {
-  height: 1024px;
+  --nav-width: 300px;
+
+  display: flex;
+  justify-content: space-between;
+
+  height: 500px;
 }
 
 .forNon-authorizedUsers,
 .forAuthorizedUsers {
   display: none;
 }
+
+/*#region form*/
+input {
+  border-top: none;
+  border-right: none;
+  border-bottom: 2px solid lightgrey;
+  border-left: none;
+
+  color: lightgrey;
+  margin: 20px;
+}
+
+input:focus {
+  outline: none !important;
+  border-bottom: 2px solid #475D77;
+  color: #475D77;
+}
+
+form {
+  text-align: center;
+}
+/*#endregion*/
+
+h2 {
+  font-size: 180%;
+}
+
+/*#region sections in main*/
+nav {
+  width: var(--nav-width);
+}
+
+.value_section {
+  width: calc(100vw - var(--nav-width)*2);
+}
+
+nav,
+.value_section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: white;
+
+  margin: 10px 50px;
+  padding: 30px 0px;
+
+  border-radius: 15px;
+}
+/*#endregion*/
