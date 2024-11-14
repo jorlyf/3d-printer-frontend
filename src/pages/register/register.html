@@ -6,22 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Регистрация</title>
   <link rel="stylesheet" href="register.css">
+  <link rel="import" id="linkImport" onload="AddHeader()" href="header.html">
 </head>
 
 <body>
   <header>
-    <p>Регистрация</p>
-    <a class="a" href="index.html">Вернуться на главную</a><br>
-    <a class="a" href="login.html">Вернуться к авторизации</a>
+
   </header>
   <main>
-    <form id="registerForm">
-      <p>Введите информацию</p>
-      <label>Логин: <input type="email" placeholder="login" id="inp_1"></label><br>
-      <label>Пароль: <input type="password" placeholder="password" id="inp_2"></label>
-      <br>
-      <button class="sendBtn" type="submit">Отправить</button>
-    </form>
+    <nav>
+      <a class="a" href="index.html">Вернуться на главную</a><br>
+      <a class="a" href="login.html">Вернуться к авторизации</a>
+    </nav>
+    <section>
+      <form id="registerForm">
+        <p>Введите информацию</p>
+        <label>Логин: <input type="email" placeholder="login" id="inp_1"></label><br>
+        <label>Пароль: <input type="password" placeholder="password" id="inp_2"></label>
+        <br>
+        <button class="sendBtn" type="submit">Отправить</button>
+      </form>
+    </section>
   </main>
 </body>
 <footer>

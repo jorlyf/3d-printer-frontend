@@ -6,15 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D printers from ISTU</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="import" id="linkImport" onload="AddHeader()" href="header.html">
 </head>
 
 <body>
   <header>
-    <p>Главное меню</p>
-    <a class="a" href="login.html">Войти</a>
+
   </header>
   <main>
-
+    <nav>
+      <a class="a forNon-authorizedUsers" href="login.html" id="logInBtn">Войти</a>
+      <a class="a forAuthorizedUsers" onclick="" id="logOutBtn">Выйти</a>
+    </nav>
   </main>
 </body>
 <footer>

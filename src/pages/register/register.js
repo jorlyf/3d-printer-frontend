@@ -36,3 +36,8 @@ function register(e) {
 
 const registerForm = document.getElementById("registerForm");
 registerForm?.addEventListener("submit", register);
+
+function AddHeader(){
+  const el = link.import.getElementById('HeaderTemplate');
+  document.header.appendChild(el);
+}

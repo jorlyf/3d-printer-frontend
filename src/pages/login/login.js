@@ -36,3 +36,8 @@ function login(e) {
 
 const loginForm = document.getElementById("loginForm");
 loginForm?.addEventListener("submit", login);
+
+function AddHeader(){
+  const el = link.import.getElementById('HeaderTemplate');
+  document.header.appendChild(el);
+}

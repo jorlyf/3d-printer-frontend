@@ -6,22 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Авторизация</title>
   <link rel="stylesheet" href="login.css">
+  <link rel="import" id="linkImport" onload="AddHeader()" href="header.html">
 </head>
 
 <body>
   <header>
-    <p>Авторизация</p>
-    <a class="a" href="index.html">Вернуться на главную</a>
+
   </header>
   <main>
-    <form id="loginForm">
-      <p>Введите информацию</p>
-      <label>Логин: <input type="email" placeholder="login" id="inp_1"></label><br>
-      <label>Пароль: <input type="password" placeholder="password" id="inp_2"></label>
-      <br>
-      <button class="sendBtn" type="submit">Отправить</button>
-    </form>
-    <a href="register.html">Зарегестрироваться</a>
+    <nav>
+      <a class="a" href="index.html">Вернуться на главную</a>
+    </nav>
+    <section>
+      <form id="loginForm">
+        <p>Введите информацию</p>
+        <label>Логин: <input type="email" placeholder="login" id="inp_1"></label><br>
+        <label>Пароль: <input type="password" placeholder="password" id="inp_2"></label>
+        <br>
+        <button class="sendBtn" type="submit">Отправить</button>
+      </form>
+      <a href="register.html">Зарегестрироваться</a>
+    </section>
   </main>
 </body>
 <footer>
