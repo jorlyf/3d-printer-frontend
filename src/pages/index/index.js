@@ -1,8 +1,11 @@
 import "@common/css/style.css";
 import { saveJWT } from "../../common/js/jwt";
 import { getJWT } from "../../common/js/jwt";
+import { AddHeader} from "./../../pages/header/header.js";
 
 window.onload = load;
+
+AddHeader();
 
 function load() {
     const jwt = getJWT();
@@ -24,7 +27,7 @@ function load() {
     }
 }
 
-function AddHeader(){
-    const el = link.import.getElementById('HeaderTemplate');
-    document.header.appendChild(el);
+function logOut() {
+    alert('Выход из аккаунта');
+    saveJWT(undefined);
 }

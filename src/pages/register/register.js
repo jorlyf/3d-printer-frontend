@@ -1,6 +1,9 @@
 import request from "./../../common/js/request.js";
 import { saveJWT } from "./../../common/js/jwt.js";
+import { AddHeader} from "./../../pages/header/header.js";
 import "@common/css/style.css";
+
+AddHeader();
 
 async function _send(_login, _password) {
   const body = {
@@ -36,8 +39,3 @@ function register(e) {
 
 const registerForm = document.getElementById("registerForm");
 registerForm?.addEventListener("submit", register);
-
-function AddHeader(){
-  const el = link.import.getElementById('HeaderTemplate');
-  document.header.appendChild(el);
-}
